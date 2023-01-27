@@ -1,44 +1,60 @@
 import React, { createContext, useState } from 'react'
-import { users as usersApi } from "../api"
+import { users as usersApi } from "../api";
 
 export const usersContext = createContext()
+
 export const usersDispatcherContext = createContext()
 
 export const UsersProvider = ({ children }) => {
 
-    const [data, setData] = useState(null)
-    const [error, setError] = useState("")
-    const [isLoading, setIsLoading] = useState(false)
+	const [data, setData] = useState(null)
+	const [error, setError] = useState("")
+	const [isLoading, setIsLoading] = useState(false)
 
-    const getData = async () => {
-        try {
-            setData(null)
-            setIsLoading(true)
-            const res = await getUsers()
-            setIsLoading(false)
-            setData(res.data)
-        } catch (error) {
-            setIsLoading(false)
-            setError(error.message)
-        }
-    }
+	const getData = async () => {
+		try {
+			setData(null)
+			setIsLoading(true)
+			const res = await usersApi.getUsers()
+			setIsLoading(false)
+			setData(res.data)
+		} catch (error) {
+			setIsLoading(false)
+			setError(error.message)
+		}
+	}
 
-    const state = { data, error, isLoading }
 
-    const dispatchers = { getData }
+	const deleteUser = async (userId) => {
+		try {
+			setIsLoading(true)
+			await usersApi.deleteUser(userId)
+			setIsLoading(false)
+			await getData()
+		} catch (error) {
+			setIsLoading(false)
+			setError(error.message)
+		}
+	}
 
-    return (
-        <>
-            <usersDispatcherContext.Provider value={dispatchers}>
 
-                <usersContext.Provider value={state}>
+	// const state = {
+	// 	data: data,
+	// 	error: error,
+	// 	isLoading: isLoading
+	// };
 
-                    {children}
+	const state = { data, error, isLoading };
 
-                </usersContext.Provider>
+	const dispatchers = { getData, deleteUser }
 
-            </usersDispatcherContext.Provider>
-        </>
-    )
-
+	return (
+		<>
+			<usersDispatcherContext.Provider value={dispatchers}>
+				<usersContext.Provider value={state}>
+					{children}
+				</usersContext.Provider>
+			</usersDispatcherContext.Provider>
+		</>
+	)
 }
