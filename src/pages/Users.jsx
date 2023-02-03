@@ -5,8 +5,8 @@ const Users = () => {
 	return (
 		<>
 			<h3><em>page: Users.jsx</em></h3>
-			<GetUsers />
 			<CreateUser />
+			<GetUsers />
 		</>
 	)
 }
