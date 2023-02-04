@@ -1,8 +1,12 @@
 import React from 'react'
 import UserCard from './UserCard'
+import { users } from '../context'
 
 
 const UsersList = ({ list }) => {
+
+	const { deleteUser } = useContext(users.usersDispatcherContext)
+
 
 	return (
 		<div className="p-3 mt-1">
@@ -13,12 +17,13 @@ const UsersList = ({ list }) => {
 			</div>
 
 			{
-				list && list.map((e) => (
+				list && list.map((id, username, name) => (
 					<UserCard
-						key={e.id}
-						username={e.username}
-						name={e.name}
-						id={e.id}
+						key={id}
+						username={username}
+						name={name}
+						id={id}
+						deleteUser={deleteUser}
 					/>
 				))
 			}

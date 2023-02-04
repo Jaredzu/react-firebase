@@ -6,12 +6,10 @@ import { users } from "../context";
 const UserCard = ({ username, name, id }) => {
 	const LINK_ADDRESS = `/users/${id}`
 
-	const { deleteUser } = useContext(users.usersDispatcherContext)
-
-	const handleDeleteWithId = () => {
+	const handleDelete = () => {
 		return deleteUser(id)
 	}
-
+	
 	return (
 		<div className="card mb-2">
 			<em>Component: UserCard.jsx</em>
@@ -25,7 +23,7 @@ const UserCard = ({ username, name, id }) => {
 				<Link className='btn btn-primary' to={LINK_ADDRESS} >
 					Editar
 				</Link>
-				<button onClick={handleDeleteWithId} className="btn btn-danger">
+				<button onClick={handleDelete} className="btn btn-danger">
 					eliminar
 				</button>
 			</div>

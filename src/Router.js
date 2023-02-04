@@ -9,12 +9,11 @@ export const router = createBrowserRouter(
 			<Route path="/" element={<Navbar />} >
 
 				<Route path="/" element={<Home />} />
-				<Route path="/users" element={<Users />} />
+				<Route path="/users/*" element={<Users />} />
+				<Route path="/users/:id/*" element={<Users />} />
 
 
 			</Route>
 		</>
 	)
 )
-
-// TYPESCRIPT > NEXT JS 
