@@ -1,9 +1,8 @@
-import React, { useContext } from 'react'
+import React from 'react'
 import { Link } from 'react-router-dom'
-import { users } from "../context";
 
 
-const UserCard = ({ username, name, id }) => {
+const UserCard = ({ username, name, id, deleteUser }) => {
 	const LINK_ADDRESS = `/users/${id}`
 
 	const handleDelete = () => {

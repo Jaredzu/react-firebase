@@ -8,7 +8,7 @@ const CreateUser = () => {
     const { id } = useParams()
     const { createUser, getUserDetails } = useContext(users.usersDispatcherContext)
 
-    const { currentUser } = useContext(users.usersDispatcherContext)
+    const { currentUser } = useContext(users.usersContext)
 
     useEffect(() => {
         if (id) {

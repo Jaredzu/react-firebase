@@ -26,21 +26,26 @@ const UserForm = ({ createUser, initialValues }) => {
         console.log(data)
     }
 
+
     return (
-        <form onSubmit={handleSubmit(sendForm)}>
-            <p>UserForm</p>
-            <input disabled type="number" className='mb-2 form-control' placeholder='id'{...register('id', { required: true })} />
-            {errors.id && <p>Error: it is necessary this field 'id'</p>}
-            <input type="text" className='mb-2 form-control' placeholder='username'{...register('username', { required: true })} />
-            {errors.username && <p>Error: it is necessary this field 'username'</p>}
-            <input type="text" className='mb-2 form-control' placeholder='name'{...register('name', { required: true })} />
-            {errors.name && <p>Error: it is necessary this field 'name'</p>}
-            <input type="number" className='mb-2 form-control' placeholder='age'{...register('age', { required: true })} />
-            {errors.age && <p>Error: it is necessary this field 'age'</p>}
-            <button type='submit' className="btn btn-success">
-                Submit
-            </button>
-        </form>
+        <>
+
+            {console.log(initialValues)}
+            <form onSubmit={handleSubmit(sendForm)}>
+                <p>UserForm</p>
+                <input disabled type="number" className='mb-2 form-control' placeholder='id'{...register('id')} />
+                {errors.id && <p>Error: it is necessary this field 'id'</p>}
+                <input type="text" className='mb-2 form-control' placeholder='username'{...register('username', { required: true })} />
+                {errors.username && <p>Error: it is necessary this field 'username'</p>}
+                <input type="text" className='mb-2 form-control' placeholder='name'{...register('name', { required: true })} />
+                {errors.name && <p>Error: it is necessary this field 'name'</p>}
+                <input type="number" className='mb-2 form-control' placeholder='age'{...register('age', { required: true })} />
+                {errors.age && <p>Error: it is necessary this field 'age'</p>}
+                <button type='submit' className="btn btn-success">
+                    Submit
+                </button>
+            </form>
+        </>
     )
 }
 

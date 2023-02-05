@@ -1,6 +1,7 @@
 import React from 'react'
 import UserCard from './UserCard'
 import { users } from '../context'
+import { useContext } from 'react'
 
 
 const UsersList = ({ list }) => {
@@ -17,7 +18,7 @@ const UsersList = ({ list }) => {
 			</div>
 
 			{
-				list && list.map((id, username, name) => (
+				list && list.map(({ id, username, name }) => (
 					<UserCard
 						key={id}
 						username={username}

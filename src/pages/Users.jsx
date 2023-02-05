@@ -1,6 +1,7 @@
 import React from 'react'
 import { GetUsers } from "../containers";
 import CreateUser from '../containers/CreateUser';
+
 const Users = () => {
 	return (
 		<>

@@ -1,5 +1,4 @@
 import React, { createContext, useState } from 'react'
-import { useParams } from 'react-router';
 import { users as usersApi } from "../api";
 
 export const usersContext = createContext()
@@ -55,6 +54,7 @@ export const UsersProvider = ({ children }) => {
 			setIsLoading(true)
 			const res = await usersApi.getUserDetails(id)
 			setCurrentUser(res.data);
+			console.log(res.data);
 			setIsLoading(false)
 		} catch (error) {
 			setIsLoading(false)
@@ -75,14 +75,6 @@ export const UsersProvider = ({ children }) => {
 		}
 	}
 
-
-
-
-	const initialValues = {
-		username: "init @username",
-		name: "init @name",
-		age: "init @age",
-	}
 
 	// const state = {
 	// 	data: data,
