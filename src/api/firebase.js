@@ -1,5 +1,15 @@
 import { initializeApp } from "firebase/app";
-import { getFirestore, getDocs, collection, addDoc, deleteDoc, doc, setDoc, getDoc } from "firebase/firestore";
+import {getAuth, GoogleAuthProvider, signInWithPopup, signOut } from "firebase/auth"
+import {
+  getFirestore,
+  getDocs,
+  collection,
+  addDoc,
+  deleteDoc,
+  doc,
+  setDoc,
+  getDoc
+} from "firebase/firestore";
 
 // Your web app's Firebase configuration
 const firebaseConfig = {
@@ -14,6 +24,22 @@ const firebaseConfig = {
 // Initialize Firebase
 export const app = initializeApp(firebaseConfig);
 const db = getFirestore(app)
+
+// AUTHENTICATION WITH FIREBASE
+
+const auth = getAuth(app)
+const authProvider = new GoogleAuthProvider()
+
+export const login = async () => {
+  authProvider.setCustomParameters({ prompt: "select_account" })
+  const res = await signInWithPopup(auth, authProvider)
+  return res.user
+}
+
+export const logout = async () =>  await signOut(auth)
+
+
+// CRUD WITH FIREBASE
 
 const userCollection = collection(db, "users")
 
