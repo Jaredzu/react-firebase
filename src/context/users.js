@@ -37,7 +37,7 @@ export const UsersProvider = ({ children }) => {
 			if (user.id) {
 				await usersApi.updateUser(user.id, user)
 			} else {
-				await usersApi.createUser(user)
+				await firebase.createUser(user)
 			}
 
 			setIsLoading(false)
