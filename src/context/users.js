@@ -1,5 +1,5 @@
 import React, { createContext, useState } from 'react'
-import { users as usersApi } from "../api";
+import { users as usersApi, firebase } from "../api/";
 
 export const usersContext = createContext()
 
@@ -9,6 +9,7 @@ export const UsersProvider = ({ children }) => {
 	const [data, setData] = useState(null)
 	const [error, setError] = useState("")
 	const [isLoading, setIsLoading] = useState(false)
+	
 	const [currentUser, setCurrentUser] = useState({
 		username: "init @username",
 		name: "init name",
@@ -19,7 +20,7 @@ export const UsersProvider = ({ children }) => {
 		try {
 			setData(null)
 			setIsLoading(true)
-			const res = await usersApi.getUsers()
+			const res = await firebase.getData()
 			setIsLoading(false)
 			setData(res.data)
 		} catch (error) {
