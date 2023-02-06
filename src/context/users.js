@@ -9,7 +9,7 @@ export const UsersProvider = ({ children }) => {
 	const [data, setData] = useState(null)
 	const [error, setError] = useState("")
 	const [isLoading, setIsLoading] = useState(false)
-	
+
 	const [currentUser, setCurrentUser] = useState({
 		username: "init @username",
 		name: "init name",
@@ -67,7 +67,7 @@ export const UsersProvider = ({ children }) => {
 		console.log("deleteUser")
 		try {
 			setIsLoading(true)
-			await usersApi.deleteUser(userId)
+			await firebase.deleteUser(userId)
 			setIsLoading(false)
 			await getData()
 		} catch (error) {

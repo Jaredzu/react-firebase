@@ -1,5 +1,5 @@
 import { initializeApp } from "firebase/app";
-import { getFirestore, getDocs, collection, addDoc } from "firebase/firestore";
+import { getFirestore, getDocs, collection, addDoc, deleteDoc, doc } from "firebase/firestore";
 
 // Your web app's Firebase configuration
 const firebaseConfig = {
@@ -20,9 +20,9 @@ const userCollection = collection(db, "users")
 export const getData = async () => {
   const snapshot = await getDocs(userCollection)
   const data = []
-  snapshot.docs.forEach(doc => {
-    const user = doc.data()
-    user.id = doc.id
+  snapshot.docs.forEach(d => {
+    const user = d.data()
+    user.id = d.id
     data.push(user)
     /*     data.push(doc.data({...user, id})) */
   })
@@ -30,3 +30,5 @@ export const getData = async () => {
 }
 
 export const createUser = async ({ username, name, age }) => await addDoc(userCollection, { username, name, age })
+
+export const deleteUser = async (id) => await deleteDoc(doc(userCollection, id))
