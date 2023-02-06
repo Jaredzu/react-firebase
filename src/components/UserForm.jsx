@@ -23,17 +23,15 @@ const UserForm = ({ createUser, initialValues }) => {
         createUser(data)
         reset(handleReset)
 
-        console.log(data)
     }
 
 
     return (
         <>
 
-            {console.log(initialValues)}
             <form onSubmit={handleSubmit(sendForm)}>
                 <p>UserForm</p>
-                <input disabled type="number" className='mb-2 form-control' placeholder='id'{...register('id')} />
+                <input disabled type="text" className='mb-2 form-control' placeholder='id'{...register('id')} />
                 {errors.id && <p>Error: it is necessary this field 'id'</p>}
                 <input type="text" className='mb-2 form-control' placeholder='username'{...register('username', { required: true })} />
                 {errors.username && <p>Error: it is necessary this field 'username'</p>}
