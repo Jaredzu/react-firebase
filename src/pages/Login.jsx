@@ -1,9 +1,11 @@
-import React, { useState } from 'react'
+import React, { useContext } from 'react'
 import { firebase } from '../api'
+import { auth } from '../context'
+
 
 const Login = () => {
 
-    const [user, setUser] = useState()
+    const {user, setUser} = useContext(auth.authContext)
 
     const handleClick = async () => {
         const _user = await firebase.login()
@@ -23,7 +25,7 @@ const Login = () => {
                     <>
                         <img src={user.photoURL} alt="user photo" />
                         <h1>Welcome! { user.displayName}</h1>
-                        <button className="btn btn-danger m-3" onClick={handleLogout}>LogOut</button>
+                        <button className="btn btn-danger m-3" onClick={handleLogout}>Logout</button>
                     </>
                 ) : (
 
