@@ -1,5 +1,5 @@
 import { initializeApp } from "firebase/app";
-import {getAuth, GoogleAuthProvider, signInWithPopup, signOut } from "firebase/auth"
+import { getAuth, GoogleAuthProvider, signInWithPopup, signOut } from "firebase/auth"
 import {
   getFirestore,
   getDocs,
@@ -27,7 +27,7 @@ const db = getFirestore(app)
 
 // AUTHENTICATION WITH FIREBASE
 
-const auth = getAuth(app)
+export const auth = getAuth(app)
 const authProvider = new GoogleAuthProvider()
 
 export const login = async () => {
@@ -36,7 +36,7 @@ export const login = async () => {
   return res.user
 }
 
-export const logout = async () =>  await signOut(auth)
+export const logout = async () => await signOut(auth)
 
 
 // CRUD WITH FIREBASE
@@ -59,7 +59,7 @@ export const createUser = async ({ username, name, age }) => await addDoc(userCo
 
 export const deleteUser = async (id) => await deleteDoc(doc(userCollection, id))
 
-export const updateUser = async (id, {username, name, age }) => await setDoc(doc(userCollection, id), { username, name, age})
+export const updateUser = async (id, { username, name, age }) => await setDoc(doc(userCollection, id), { username, name, age })
 
 export const getUserDetails = async (id) => {
 
@@ -67,5 +67,5 @@ export const getUserDetails = async (id) => {
   const user = snapshot.data()
   user.id = snapshot.id
   return { data: user }
-  
+
 }
